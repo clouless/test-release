@@ -11,6 +11,6 @@ pipelineHelper.nodejsTemplate {
   stage('release') {
     sh 'echo "foo" > my_asset.txt'
     def releaseId = pipelineHelper.githubCreateGitHubRelease("clouless", env.GWBT_REPO_NAME, "1.0", "master")
-    echo releaseId
+    echo "relid: ${releaseId}"
   }
 }
