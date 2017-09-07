@@ -12,6 +12,7 @@ pipelineHelper.nodejsTemplate {
     sh 'echo "{ \"foo\": \"bar\" }" > my_asset.json'
     def releaseId = pipelineHelper.githubCreateGitHubRelease("clouless", env.GWBT_REPO_NAME, "1.0", "master")
     echo "relid: ${releaseId}"
+    echo "foo"
     pipelineHelper.githubUploadAssetToGithubRelease("codeclou", env.GWBT_REPO_NAME, "1.0", releaseId, "./", "my_asset.json", "application/json")
   }
 }
