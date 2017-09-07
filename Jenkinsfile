@@ -6,7 +6,7 @@ pipelineHelper.nodejsTemplate {
     sh 'yarn -version'
   }
   stage('git clone') {
-    sh 'git clone --single-branch --branch $GWBT_BRANCH https://${GITHUB_AUTH_TOKEN}@github.com/${GWBT_REPO_FULL_NAME}.git .'
+    sh 'git clone --single-branch --branch $GWBT_BRANCH https://${GITHUB_AUTH_TOKEN}@github.com/${GWBT_REPO_FULL_NAME}.git source'
   }
   stage('release') {
     sh 'echo "foo" > my_asset.txt'
