@@ -1,4 +1,4 @@
-sh 'curl -sSLko pipeline-helper.groovy ${K8S_INFRASTRUCTURE_BASE_URL}pipeline-helper/pipeline-helper.groovy?v13'
+sh 'curl -sSLko pipeline-helper.groovy ${K8S_INFRASTRUCTURE_BASE_URL}pipeline-helper/pipeline-helper.groovy?v14'
 def pipelineHelper = load("./pipeline-helper.groovy")
 pipelineHelper.nodejsTemplate {
   stage('prepare tools') {
