@@ -1,4 +1,4 @@
-sh 'curl -sSLko pipeline-helper.groovy ${K8S_INFRASTRUCTURE_BASE_URL}pipeline-helper/pipeline-helper.groovy?v8'
+sh 'curl -sSLko pipeline-helper.groovy ${K8S_INFRASTRUCTURE_BASE_URL}pipeline-helper/pipeline-helper.groovy?v9'
 def pipelineHelper = load("./pipeline-helper.groovy")
 pipelineHelper.nodejsTemplate {
   stage('prepare tools') {
@@ -11,7 +11,6 @@ pipelineHelper.nodejsTemplate {
   stage('release') {
     dir ('source') {
       def releaseId = pipelineHelper.githubCreateGitHubRelease("clouless", env.GWBT_REPO_NAME, "1.0", "master")
-      pipelineHelper.test123('x12')
       pipelineHelper.githubUploadAssetToGitHubRelease("clouless", env.GWBT_REPO_NAME, "1.0", releaseId, "dist", "my_asset.json", 'application/json')
     }
   }
