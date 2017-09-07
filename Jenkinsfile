@@ -10,6 +10,7 @@ pipelineHelper.nodejsTemplate {
   }
   stage('release') {
     dir ('source') {
+      sh 'env'
       def releaseId = pipelineHelper.githubCreateGitHubRelease("clouless", env.GWBT_REPO_NAME, "1.0", "master")
       pipelineHelper.githubUploadAssetToRelease("clouless", env.GWBT_REPO_NAME, "1.0", releaseId, "dist/", "my_asset.json", 'application/json')
     }
