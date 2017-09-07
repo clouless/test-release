@@ -9,10 +9,9 @@ pipelineHelper.nodejsTemplate {
     sh 'git clone --single-branch --branch $GWBT_BRANCH https://${GITHUB_AUTH_TOKEN}@github.com/${GWBT_REPO_FULL_NAME}.git source'
   }
   stage('release') {
-    sh 'echo "{ \"foo\": \"bar\" }" > my_asset.json'
-    def releaseId = pipelineHelper.githubCreateGitHubRelease("clouless", env.GWBT_REPO_NAME, "1.0", "master")
-    echo "relid: ${releaseId}"
-    echo "foo"
-    pipelineHelper.githubUploadAssetToGithubRelease("codeclou", env.GWBT_REPO_NAME, "1.0", releaseId, "./", "my_asset.json", "application/json")
+    dir ('source' {
+      def releaseId = pipelineHelper.githubCreateGitHubRelease("clouless", env.GWBT_REPO_NAME, "1.0", "master")
+      pipelineHelper.githubUploadAssetToGithubRelease("codeclou", env.GWBT_REPO_NAME, "1.0", releaseId, "dist", "my_asset.json", "application/json")
+    }
   }
 }
